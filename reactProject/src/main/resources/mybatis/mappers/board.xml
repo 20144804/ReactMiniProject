@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.douzone.mappers.BoardDAO">
+
+	<select id="boardList" resultType="Board" >
+		select * from board
+		LIMIT 10
+	</select>
+	
+	<select id="boardDetail" resultType="Board" >
+		select * from board
+		where seq = #{seq}
+	</select>
+	
+	
+	<update id="boardUpdate" >
+		update  board
+		set title=#{title}, content =#{content}
+		where seq = #{seq} and board_passwd = #{board_passwd}
+	</update>
+	
+	<delete id="boardDelete" >
+		delete from board
+		where seq = #{seq} and board_passwd = #{board_passwd}
+	</delete>
+	
+	<insert id="boardAdd" >
+		insert into board(title,content,writer,board_passwd)
+		values(#{title},#{content}, #{writer}, #{board_passwd})
+	</insert>
+</mapper>
